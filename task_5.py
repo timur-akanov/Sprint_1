@@ -6,17 +6,13 @@ class TestCase:
 
     def set_step(self, step_number,step_text):
         self.steps.update({step_number:step_text})
-        # print(self.steps)
 
     def delete_step(self, step_number):
         self.steps.pop(step_number)
-        # print(self.steps)
     def set_result(self,result):
         self.result = result
-        # print(self.result)
     def get_test_case(self):
         print({'Шаги': self.steps,'Ожидаемый результат': self.result})
-
 
 
 
