@@ -1,18 +1,24 @@
 class TestCase:
-
-    def __init__(self, steps, result): 
-       self.steps = steps
-       self.result = result
-
-    def set_step(self, step_number,step_text):
-        self.steps.update({step_number:step_text})
-
-    def delete_step(self, step_number):
-        self.steps.pop(step_number)
-    def set_result(self,result):
+    def __init__(self, steps=None, result=None):
+        self.steps = dict(steps or {})
         self.result = result
-    def get_test_case(self):
-        print({'Шаги': self.steps,'Ожидаемый результат': self.result})
+
+    def set_step(self, step_number: int, step_text: str):
+        self.steps[int(step_number)] = step_text
+
+    def delete_step(self, step_number: int) -> bool:
+        step_number = int(step_number)
+        if step_number in self.steps:
+            self.steps.pop(step_number)
+            return True
+        return False
+
+    def set_result(self, result: str):
+        self.result = result
+
+    def get_test_case(self) -> dict:
+        ordered = dict(sorted(self.steps.items()))
+        return {'Шаги': ordered, 'Ожидаемый результат': self.result}
 
 
 
